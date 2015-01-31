@@ -23,16 +23,26 @@ class ViewController: UIViewController {
         view2.addEventListener("handle2", withFunction: view2.handler2)
         
         
+        view1.addEventListener("outerListener", withFunction : test)
+        
         EventHub.instance.trigger(Event(type: "handle1"))
         EventHub.instance.trigger(Event(type: "handle2"))
         
         view1.removeEventListener("handle1")
         view2.removeEventListener("handle2")
         
-        EventHub.instance.trigger(Event(type :"handle1"));
+        EventHub.instance.trigger(Event(type :"outerListener"));
+        
+        view1.removeEventListener("outerListener")
+        EventHub.instance.trigger(Event(type :"outerListener"));
         
         
         println("WOHHAAA !")
+    }
+    
+    func test(e : Event)
+    {
+        println("outerListener")
     }
 
 

@@ -11,7 +11,7 @@ class EventDispatcher : IEventDispatcherProtocol {
         EventHub.instance.trigger(e);
     }
     
-    func addEventListener(name :String,withFunction f : (Event)->()) {
+    func addEventListener(name :String, withFunction f : (Event)->()) {
         EventHub.instance.addEventListener(name, withFunction: f, withDispatcher: self)
     }
     
