@@ -8,15 +8,15 @@ import Foundation
 class EventDispatcher : IEventDispatcherProtocol {
     func dispatchEvent(e : Event)
     {
-        EventHub.instance.trigger(e.type,withEvent : e);
+        EventHub.instance.trigger(e);
     }
     
     func addEventListener(name :String,withFunction f : (Event)->()) {
-        EventHub.instance.addEventListener(name, withFunction: f)
+        EventHub.instance.addEventListener(name, withFunction: f, withDispatcher: self)
     }
     
-    func removeEventListener(name : String, withFunction f : (Event)->()) {
-        EventHub.instance.removeEventListener(name, withFunction : f)
+    func removeEventListener(name : String) {
+        EventHub.instance.removeEventListener(name, withDispatcher : self)
     }
     
 }

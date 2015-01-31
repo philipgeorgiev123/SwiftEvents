@@ -7,61 +7,67 @@ import Foundation
 
 private let _eventHubInstance : EventHub = EventHub()
 
+class ObjectFunction {
+    var listener : (Event)->()?
+    var dispatcher : EventDispatcher?
+    
+    init(f : (Event)->(), withObject obj : EventDispatcher)
+    {
+        self.listener = f
+        self.dispatcher = obj
+    }
+}
+
 class EventHub {
     class var instance : EventHub
     {
         return _eventHubInstance;
     }
     
-    private var _eventFunctionMap : [String : Array<(Event)->()>] = [String : Array<(Event)->()>]()
+    private var _eventFunctionMap : [String : Array<ObjectFunction>] = [String : Array<ObjectFunction>]()
     
     init ()
     {
         
     }
     
-    func addEventListener(name : String, withFunction f : (Event)->())
+    func addEventListener(name : String, withFunction f : (Event)->(), withDispatcher d : EventDispatcher)
     {
-        var arrayListeners : Array<(Event)->()>? = _eventFunctionMap[name]
+        var arrayListeners : Array<ObjectFunction>? = _eventFunctionMap[name]
         
         if arrayListeners==nil {
-            arrayListeners = Array<(Event)->()>();
+            arrayListeners = Array<ObjectFunction>();
         }
         
-        arrayListeners!.append(f)
-        _eventFunctionMap.updateValue(arrayListeners! , forKey : name)
+        arrayListeners?.append(ObjectFunction(f: f, withObject: d))
+        _eventFunctionMap[name] = arrayListeners
     }
     
-    func removeEventListener(name :String, withFunction f:(Event)->())
+    func removeEventListener(name :String, withDispatcher dispatcher : EventDispatcher)
     {
-        if var arrayListeners: Array<(Event)->()> = _eventFunctionMap[name]
+        if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
-            for (index, listener) in enumerate(arrayListeners)
+            for (index, o) in enumerate(objectListeners)
             {
-                
-                    if unsafeBitCast(listener, AnyObject.self) === unsafeBitCast(f, AnyObject.self)
-                    {
-                        let element = arrayListeners.removeAtIndex(index)
-                        // println(element)
-                        removeEventListener(name, withFunction : f)
-                        break;
-                    }
-                
+                if o.dispatcher === dispatcher
+                {
+                    objectListeners.removeAtIndex(index)
+                }
             }
+            
+            _eventFunctionMap[name] = objectListeners
             
         }
     }
     
-    func trigger(name : String, withEvent e : Event)
+    func trigger(e : Event)
     {
-        if let arrayListeners: Array<(Event)->()> = _eventFunctionMap[name]
+        if let arrayListeners: Array<ObjectFunction> = _eventFunctionMap[e.type]
         {
-            for f : (Event)->() in arrayListeners
+            for o : ObjectFunction in arrayListeners
             {
-                f(e)
+                o.listener(e)
             }
         }
     }
-    
-
 }

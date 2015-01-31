@@ -9,5 +9,5 @@ protocol IEventDispatcherProtocol
 {
     func dispatchEvent(e:Event)
     func addEventListener(name : String, withFunction f : (Event)->())
-    func removeEventListener(name : String, withFunction f : (Event)->())
+    func removeEventListener(name : String)
 }

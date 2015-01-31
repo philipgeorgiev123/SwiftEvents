@@ -16,10 +16,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
-        let view = ViewTest()
-        view.dispatchEvent(Event(type :"test"))
-        view.removeEventListener("test", withFunction : view.test)
-        view.dispatchEvent(Event(type:"test"))
+        let view1 = DispatcherTest()
+        let view2 = DispatcherTest()
+        
+        view1.addEventListener("handle1", withFunction: view1.handler1)
+        view2.addEventListener("handle2", withFunction: view2.handler2)
+        
+        
+        EventHub.instance.trigger(Event(type: "handle1"))
+        EventHub.instance.trigger(Event(type: "handle2"))
+        
+        view1.removeEventListener("handle1")
+        view2.removeEventListener("handle2")
+        
+        EventHub.instance.trigger(Event(type :"handle1"));
+        
+        
         println("WOHHAAA !")
     }
 

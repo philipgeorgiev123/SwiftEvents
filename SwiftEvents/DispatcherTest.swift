@@ -8,15 +8,19 @@
 
 import Foundation
 
-class ViewTest : View
+class DispatcherTest : EventDispatcher
 {
     override init() {
         super.init()
-        addEventListener("test", withFunction : test)
     }
     
-    func test(e : Event)->()
+    func handler1(e : Event)->()
     {
-        println("execute test")
+        println("execute handler1")
+    }
+    
+    func handler2(e : Event)->()
+    {
+        println("execute handler2")
     }
 }
