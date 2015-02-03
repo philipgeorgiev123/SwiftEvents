@@ -143,9 +143,9 @@
 		C70AAB7E1A783A96004AA1C7 /* eventSystem */ = {
 			isa = PBXGroup;
 			children = (
+				C780F2FA1A816AD000E1D45C /* core */,
 				C70AAB7F1A783AB6004AA1C7 /* Event.swift */,
 				C70AAB811A783AC2004AA1C7 /* EventDispatcher.swift */,
-				C70AAB831A783ACC004AA1C7 /* EventHub.swift */,
 				C70AAB851A783AF1004AA1C7 /* IEventDispatcherProtocol.swift */,
 			);
 			name = eventSystem;
@@ -157,6 +157,14 @@
 				C70AAB911A783F4F004AA1C7 /* DispatcherTest.swift */,
 			);
 			name = example;
+			sourceTree = "<group>";
+		};
+		C780F2FA1A816AD000E1D45C /* core */ = {
+			isa = PBXGroup;
+			children = (
+				C70AAB831A783ACC004AA1C7 /* EventHub.swift */,
+			);
+			name = core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

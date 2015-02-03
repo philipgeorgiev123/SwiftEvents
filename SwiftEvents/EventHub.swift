@@ -33,14 +33,20 @@ class EventHub {
     
     func addEventListener(name : String, withFunction f : (Event)->(), withDispatcher d : EventDispatcher)
     {
-        var arrayListeners : Array<ObjectFunction>? = _eventFunctionMap[name]
-        
-        if arrayListeners==nil {
-            arrayListeners = Array<ObjectFunction>();
+        if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
+        {
+            for (index, o) in enumerate(objectListeners)
+            {
+                if o.dispatcher === d
+                {
+                    return
+                }
+            }
+        } else {
+            var objectListeners = Array<ObjectFunction>()
+            objectListeners.append(ObjectFunction(f: f, withObject: d))
+            _eventFunctionMap[name] = objectListeners
         }
-        
-        arrayListeners?.append(ObjectFunction(f: f, withObject: d))
-        _eventFunctionMap[name] = arrayListeners
     }
     
     func removeEventListener(name :String, withDispatcher dispatcher : EventDispatcher)
@@ -49,10 +55,13 @@ class EventHub {
         {
             for (index, o) in enumerate(objectListeners)
             {
+                // they can be only on dispatcher so bail after that
                 if o.dispatcher === dispatcher
                 {
                     objectListeners.removeAtIndex(index)
+                    break
                 }
+                
             }
             
             _eventFunctionMap[name] = objectListeners
