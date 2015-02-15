@@ -19,4 +19,9 @@ class EventDispatcher : IEventDispatcherProtocol {
         EventHub.instance.removeEventListener(name, withDispatcher : self)
     }
     
+    func removeAllListeners()
+    {
+        EventHub.instance.removeAllListeners(self)
+    }
+    
 }
