@@ -33,21 +33,22 @@ class EventHub {
     
     func addEventListener(name : String, withFunction f : (Event)->(), withDispatcher d : EventDispatcher)
     {
-        
-        println("trying to add function : ", name, f, d)
-        
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
             for (index, o) in enumerate(objectListeners)
             {
                 if o.dispatcher === d
                 {
-                    println("can't add event listener ", name, f, d)
+                    println("multiple listeners are not supported by the framework :", name , " for ", d)
                     return
                 }
             }
+            
+            objectListeners.append(ObjectFunction(f: f, withObject: d))
+            _eventFunctionMap[name] = objectListeners
+            
+            // add it to the list if not found
         } else {
-            println("adding event listener ", name, f, d)
             var objectListeners = Array<ObjectFunction>()
             objectListeners.append(ObjectFunction(f: f, withObject: d))
             _eventFunctionMap[name] = objectListeners
@@ -86,12 +87,10 @@ class EventHub {
                     
                     if objectFunctions.count == 0
                     {
-                        println(objectFunctions.count)
                         _eventFunctionMap.removeValueForKey(name)
                     
                     } else
                     {
-                        println("removing ", name)
                         _eventFunctionMap[name] = objectFunctions
                     }
                     break

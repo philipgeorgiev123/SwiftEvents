@@ -23,15 +23,11 @@ class ViewController: UIViewController {
         
         view1.addEventListener("handle1", withFunction: view1.handler1)
         view1.addEventListener("handle2", withFunction: view1.handler2)
-        view2.addEventListener("handle1", withFunction: view2.handler2)
         
-        view1.removeAll()
-        
-        view1.addEventListener("handle1", withFunction: test)
+        view1.removeAllListeners()
         
         view1.dispatchEvent(Event(type: "handle1"))
-        
-        println("test")
+        view1.dispatchEvent(Event(type: "handle2"))
         
         /*
         // adding events to external handlers

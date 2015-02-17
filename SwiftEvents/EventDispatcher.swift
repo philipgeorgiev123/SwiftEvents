@@ -24,4 +24,9 @@ class EventDispatcher : IEventDispatcherProtocol {
         EventHub.instance.removeAllListeners(self)
     }
     
+    deinit
+    {
+        removeAllListeners()
+    }
+    
 }
