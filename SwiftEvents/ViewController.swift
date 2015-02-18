@@ -20,44 +20,41 @@ class ViewController: UIViewController {
         let view2 = DispatcherTest()
         
         // adding events listeners to internal handlers
+        view1.addEventListener("someEvent1", withFunction: view1.handler1)
+        view1.addEventListener("someEvent2", withFunction: view1.handler2)
+        view2.addEventListener("someEvent2", withFunction: view2.handler2)
         
-        view1.addEventListener("handle1", withFunction: view1.handler1)
-        view1.addEventListener("handle2", withFunction: view1.handler2)
-        
+        // view1 will not be interested in any events after this line
         view1.removeAllListeners()
         
-        view1.dispatchEvent(Event(type: "handle1"))
-        view1.dispatchEvent(Event(type: "handle2"))
+        view1.dispatchEvent(Event(type: "someEvent1")) // won't trigger anything
         
-        /*
-        // adding events to external handlers
-        view1.addEventListener("outerListener", withFunction : test)
+        view1.dispatchEvent(Event(type: "someEvent2")) // executes handler 2 in view2
         
-        view1.removeAll()
+        // using the global dispatcher
+        EventHub.instance.trigger(Event(type :"someEvent2")); // executes handler 2 in view2
         
-        // view dispatching to another view
-        view2.dispatchEvent(Event(type: "outerListener"))
+        view2.removeEventListener("someEvent2")
         
-        // dispatching trough the global dispatcher
-        EventHub.instance.trigger(Event(type: "handle1"))
-        EventHub.instance.trigger(Event(type: "handle2"))
+        // using the global dispatcher/Users/freezing/projects/SwiftEvents/README.md
+        EventHub.instance.trigger(Event(type :"someEvent2")); // silence, no one is interested in that event
         
-        // removing all event listeners
-        view1.removeEventListener("handle1")
-        view2.removeEventListener("handle2")
-        // view1.removeEventListener("outerListener")
+        // custom events (supporting custom data)
+        view2.addEventListener(CustomEvent.CUSTOM_TYPE, withFunction: customEventHandler)
         
-        // triger stuff
-        EventHub.instance.trigger(Event(type :"outerListener"));
-        view1.dispatchEvent(Event(type: "handle1"))
-        view2.dispatchEvent(Event(type: "handle1"))
-        */
-        // sorry silencio
+        var customEvent : CustomEvent = CustomEvent(attribute: "someCustomType")
+        EventHub.instance.trigger(customEvent)
     }
     
     func test(e : Event)
     {
         println("outerListener")
+    }
+    
+    func customEventHandler (e : Event)
+    {
+        var event : CustomEvent = e as CustomEvent
+        println(event.customAttribute)
     }
 
 

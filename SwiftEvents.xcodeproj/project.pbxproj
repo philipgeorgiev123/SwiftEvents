@@ -18,6 +18,7 @@
 		C70AAB841A783ACC004AA1C7 /* EventHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70AAB831A783ACC004AA1C7 /* EventHub.swift */; };
 		C70AAB861A783AF1004AA1C7 /* IEventDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70AAB851A783AF1004AA1C7 /* IEventDispatcherProtocol.swift */; };
 		C70AAB921A783F4F004AA1C7 /* DispatcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70AAB911A783F4F004AA1C7 /* DispatcherTest.swift */; };
+		C73B1A8F1A9530A1004CB23E /* CustomEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73B1A8E1A9530A1004CB23E /* CustomEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		C70AAB831A783ACC004AA1C7 /* EventHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHub.swift; sourceTree = "<group>"; };
 		C70AAB851A783AF1004AA1C7 /* IEventDispatcherProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IEventDispatcherProtocol.swift; sourceTree = "<group>"; };
 		C70AAB911A783F4F004AA1C7 /* DispatcherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatcherTest.swift; sourceTree = "<group>"; };
+		C73B1A8E1A9530A1004CB23E /* CustomEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEvent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				C70AAB911A783F4F004AA1C7 /* DispatcherTest.swift */,
+				C73B1A8E1A9530A1004CB23E /* CustomEvent.swift */,
 			);
 			name = example;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A460092F241F0D1ADA5076B0 /* AppDelegate.swift in Sources */,
+				C73B1A8F1A9530A1004CB23E /* CustomEvent.swift in Sources */,
 				C70AAB841A783ACC004AA1C7 /* EventHub.swift in Sources */,
 				C70AAB821A783AC2004AA1C7 /* EventDispatcher.swift in Sources */,
 				C70AAB801A783AB6004AA1C7 /* Event.swift in Sources */,

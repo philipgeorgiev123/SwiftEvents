@@ -26,7 +26,7 @@ class EventDispatcher : IEventDispatcherProtocol {
     
     deinit
     {
-        removeAllListeners()
+        removeAllListeners()	
     }
     
 }
