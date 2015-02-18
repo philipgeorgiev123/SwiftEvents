@@ -10,11 +10,9 @@ import Foundation
 
 class CustomEvent : Event
 {
-    private struct EventTypeStruct { static var type : String = "CUSTOM_EVENT_TYPE" }
-    
     class var CUSTOM_TYPE : String
     {
-        get { return EventTypeStruct.type }
+        get { return "CUSTOM_EVENT_TYPE" }
     }
     
     var customAttribute : String;
