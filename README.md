@@ -47,6 +47,10 @@ Limitations :
 Since swift cannot compare the pointers of functions it is not possible to have two different handlers for one event type for one object.
 
 Example : Have only one handler per event type per object, the following example will not work. Only the first handler should trigger.
-	view1.addEventListener("someEvent1", withFunction: view1.handler1)
-	view1.addEventListener("someEvent1", withFunction: view1.handler2)	
+	
+        view1.addEventListener("test_limitations", withFunction: limitations1)
+        view1.addEventListener("test_limitations", withFunction: limitations2)
+        view2.addEventListener("test_limitations", withFunction: limitations2) // However this is fine
+        
+        EventHub.instance.trigger(Event(type:"test_limitations")) // dispatched once with warning
 

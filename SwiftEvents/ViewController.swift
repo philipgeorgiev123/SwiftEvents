@@ -49,6 +49,13 @@ class ViewController: UIViewController {
         EventHub.instance.trigger(Event(type: "some_generic_event")) // --> outerListener
         EventHub.instance.removeEventListener("some_generic_event")
         EventHub.instance.trigger(Event(type: "some_generic_event")) // --> silence
+        
+        // test limitations here
+        view1.addEventListener("test_limitations", withFunction: limitations1)
+        view1.addEventListener("test_limitations", withFunction: limitations2)
+        view2.addEventListener("test_limitations", withFunction: limitations2) // However this is fine
+        
+        EventHub.instance.trigger(Event(type:"test_limitations")) // dispatched once with warning
     }
     
     func test(e : Event)
@@ -60,6 +67,16 @@ class ViewController: UIViewController {
     {
         var event : CustomEvent = e as CustomEvent
         println(event.customAttribute)
+    }
+    
+    func limitations1(e : Event)
+    {
+        println("limitations1")
+    }
+    
+    func limitations2(e : Event)
+    {
+        println("limitations2")
     }
 
 
