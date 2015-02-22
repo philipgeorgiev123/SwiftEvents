@@ -36,14 +36,19 @@ class ViewController: UIViewController {
         
         view2.removeEventListener("someEvent2")
         
-        // using the global dispatcher/Users/freezing/projects/SwiftEvents/README.md
+        // using the global dispatcher
         EventHub.instance.trigger(Event(type :"someEvent2")); // silence, no one is interested in that event
         
-        // custom events (supporting custom data)
         view2.addEventListener(CustomEvent.CUSTOM_TYPE, withFunction: customEventHandler)
         
         var customEvent : CustomEvent = CustomEvent(attribute: "someCustomType")
         EventHub.instance.trigger(customEvent)
+        
+        // too lazy to extend the EventDispatcher ?
+        EventHub.instance.addEventListener("some_generic_event", withFunction: test)
+        EventHub.instance.trigger(Event(type: "some_generic_event")) // --> outerListener
+        EventHub.instance.removeEventListener("some_generic_event")
+        EventHub.instance.trigger(Event(type: "some_generic_event")) // --> silence
     }
     
     func test(e : Event)

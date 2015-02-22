@@ -6,6 +6,7 @@
 import Foundation
 
 private let _eventHubInstance : EventHub = EventHub()
+private let _eventHubListener : EventDispatcher = EventDispatcher()
 
 class ObjectFunction {
     var listener : (Event)->()?
@@ -21,7 +22,12 @@ class ObjectFunction {
 class EventHub {
     class var instance : EventHub
     {
-        return _eventHubInstance;
+        return _eventHubInstance
+    }
+    
+    class var listener : EventDispatcher
+    {
+        return _eventHubListener
     }
     
     private var _eventFunctionMap : [String : Array<ObjectFunction>] = [String : Array<ObjectFunction>]()
@@ -29,6 +35,11 @@ class EventHub {
     init ()
     {
         
+    }
+    
+    func addEventListener(name : String, withFunction f : (Event)->())
+    {
+        addEventListener(name, withFunction: f, withDispatcher: _eventHubListener)
     }
     
     func addEventListener(name : String, withFunction f : (Event)->(), withDispatcher d : EventDispatcher)
@@ -55,6 +66,11 @@ class EventHub {
         }
     }
     
+    func removeEventListener(name:String)
+    {
+        removeEventListener(name, withDispatcher: _eventHubListener)
+    }
+    
     func removeEventListener(name :String, withDispatcher dispatcher : EventDispatcher)
     {
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
@@ -73,6 +89,11 @@ class EventHub {
             _eventFunctionMap[name] = objectListeners
             
         }
+    }
+    
+    func removeAllListeners()
+    {
+        removeAllListeners(_eventHubListener)
     }
     
     func removeAllListeners(dispatcher : EventDispatcher)
