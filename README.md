@@ -32,6 +32,15 @@ Usage :
         
         var customEvent : CustomEvent = CustomEvent(attribute: "someCustomType")
         EventHub.instance.trigger(customEvent)
+	
+	8. Added listening trough a global event listener, if you are too lazy to inherit/implement the dispatcher. 	However use this only for testing since its a bad practice.
+
+	// too lazy to extend the EventDispatcher ?
+        EventHub.instance.addEventListener("some_generic_event", withFunction: test)
+        EventHub.instance.trigger(Event(type: "some_generic_event")) // --> outerListener
+        EventHub.instance.removeEventListener("some_generic_event")
+        EventHub.instance.trigger(Event(type: "some_generic_event")) // --> silence
+
 
 Limitations :
 
