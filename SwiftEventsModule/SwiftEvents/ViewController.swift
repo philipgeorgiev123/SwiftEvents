@@ -11,13 +11,13 @@ class ViewController {
 
     func viewDidLoad() {
     // Do any additional setup after loading the view, typically from a nib.
-        let view1 = DispatcherTest()
-        let view2 = DispatcherTest()
+        let view1 = EventDispatcher()
+        let view2 = EventDispatcher()
         
         // adding events listeners to internal handlers
-        view1.addEventListener("someEvent1", withFunction: view1.handler1)
-        view1.addEventListener("someEvent2", withFunction: view1.handler2)
-        view2.addEventListener("someEvent2", withFunction: view2.handler2)
+        view1.addEventListener("someEvent1", withFunction: handler1)
+        view1.addEventListener("someEvent2", withFunction: handler2)
+        view2.addEventListener("someEvent2", withFunction: handler2)
         
         // view1 will not be interested in any events after this line
         view1.removeAllListeners()
@@ -51,6 +51,16 @@ class ViewController {
         view2.addEventListener("test_limitations", withFunction: limitations2) // However this is fine
         
         EventHub.instance.trigger(Event(type:"test_limitations")) // dispatched once with warning
+    }
+    
+    func handler1(e : Event)
+    {
+        println("handler1")
+    }
+    
+    func handler2(e : Event)
+    {
+        println("handler2")
     }
     
     func test(e : Event)
