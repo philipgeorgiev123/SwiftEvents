@@ -7,14 +7,9 @@
 //
 
 
-import UIKit
+class ViewController {
 
-
-class ViewController: UIViewController {
-
-
-    override func viewDidLoad() {
-    super.viewDidLoad()
+    func viewDidLoad() {
     // Do any additional setup after loading the view, typically from a nib.
         let view1 = DispatcherTest()
         let view2 = DispatcherTest()
@@ -77,11 +72,5 @@ class ViewController: UIViewController {
     func limitations2(e : Event)
     {
         println("limitations2")
-    }
-
-
-    override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
     }
 }
