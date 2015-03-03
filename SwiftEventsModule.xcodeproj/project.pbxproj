@@ -10,7 +10,6 @@
 		C73A77D61AA3B4F800D76604 /* SwiftEventsModule.h in Headers */ = {isa = PBXBuildFile; fileRef = C73A77D51AA3B4F800D76604 /* SwiftEventsModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C73A77DC1AA3B4F800D76604 /* SwiftEventsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C73A77D01AA3B4F800D76604 /* SwiftEventsModule.framework */; };
 		C73A77E31AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77E21AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift */; };
-		C73A77F61AA3B74500D76604 /* CustomEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77EF1AA3B74500D76604 /* CustomEvent.swift */; };
 		C73A77F71AA3B74500D76604 /* CustomEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77EF1AA3B74500D76604 /* CustomEvent.swift */; };
 		C73A77FA1AA3B74500D76604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77F11AA3B74500D76604 /* Event.swift */; };
 		C73A77FB1AA3B74500D76604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77F11AA3B74500D76604 /* Event.swift */; };
@@ -20,14 +19,12 @@
 		C73A77FF1AA3B74500D76604 /* EventHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77F31AA3B74500D76604 /* EventHub.swift */; };
 		C73A78001AA3B74500D76604 /* IEventDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77F41AA3B74500D76604 /* IEventDispatcherProtocol.swift */; };
 		C73A78011AA3B74500D76604 /* IEventDispatcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77F41AA3B74500D76604 /* IEventDispatcherProtocol.swift */; };
-		C73A78021AA3B74500D76604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77F51AA3B74500D76604 /* ViewController.swift */; };
-		C73A78031AA3B74500D76604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77F51AA3B74500D76604 /* ViewController.swift */; };
-		C73A78041AA3BF5800D76604 /* CustomEvent.swift in Resources */ = {isa = PBXBuildFile; fileRef = C73A77EF1AA3B74500D76604 /* CustomEvent.swift */; };
 		C73A78061AA3BF5800D76604 /* Event.swift in Resources */ = {isa = PBXBuildFile; fileRef = C73A77F11AA3B74500D76604 /* Event.swift */; };
 		C73A78071AA3BF5800D76604 /* EventDispatcher.swift in Resources */ = {isa = PBXBuildFile; fileRef = C73A77F21AA3B74500D76604 /* EventDispatcher.swift */; };
 		C73A78081AA3BF5800D76604 /* EventHub.swift in Resources */ = {isa = PBXBuildFile; fileRef = C73A77F31AA3B74500D76604 /* EventHub.swift */; };
 		C73A78091AA3BF5800D76604 /* IEventDispatcherProtocol.swift in Resources */ = {isa = PBXBuildFile; fileRef = C73A77F41AA3B74500D76604 /* IEventDispatcherProtocol.swift */; };
 		C7BF6FB11AA51CE100356D37 /* SwiftEventsModuleRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BF6FB01AA51CE100356D37 /* SwiftEventsModuleRemoveEvent.swift */; };
+		C7BF6FB31AA63E7E00356D37 /* SwiftEventsModuleCustomEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BF6FB21AA63E7E00356D37 /* SwiftEventsModuleCustomEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,13 +44,13 @@
 		C73A77DB1AA3B4F800D76604 /* SwiftEventsModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftEventsModuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73A77E11AA3B4F800D76604 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73A77E21AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftEventsModuleSimpleDispatcher.swift; sourceTree = "<group>"; };
-		C73A77EF1AA3B74500D76604 /* CustomEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEvent.swift; sourceTree = "<group>"; };
+		C73A77EF1AA3B74500D76604 /* CustomEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomEvent.swift; path = ../SwiftEventsModule/SwiftEvents/CustomEvent.swift; sourceTree = "<group>"; };
 		C73A77F11AA3B74500D76604 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C73A77F21AA3B74500D76604 /* EventDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 		C73A77F31AA3B74500D76604 /* EventHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHub.swift; sourceTree = "<group>"; };
 		C73A77F41AA3B74500D76604 /* IEventDispatcherProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IEventDispatcherProtocol.swift; sourceTree = "<group>"; };
-		C73A77F51AA3B74500D76604 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C7BF6FB01AA51CE100356D37 /* SwiftEventsModuleRemoveEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEventsModuleRemoveEvent.swift; sourceTree = "<group>"; };
+		C7BF6FB21AA63E7E00356D37 /* SwiftEventsModuleCustomEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEventsModuleCustomEvent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +111,9 @@
 		C73A77DF1AA3B4F800D76604 /* SwiftEventsModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				C73A77EF1AA3B74500D76604 /* CustomEvent.swift */,
 				C7BF6FB01AA51CE100356D37 /* SwiftEventsModuleRemoveEvent.swift */,
+				C7BF6FB21AA63E7E00356D37 /* SwiftEventsModuleCustomEvent.swift */,
 				C73A77E21AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift */,
 				C73A77E01AA3B4F800D76604 /* Supporting Files */,
 			);
@@ -132,12 +131,10 @@
 		C73A77EE1AA3B74500D76604 /* SwiftEvents */ = {
 			isa = PBXGroup;
 			children = (
-				C73A77EF1AA3B74500D76604 /* CustomEvent.swift */,
 				C73A77F11AA3B74500D76604 /* Event.swift */,
 				C73A77F21AA3B74500D76604 /* EventDispatcher.swift */,
 				C73A77F31AA3B74500D76604 /* EventHub.swift */,
 				C73A77F41AA3B74500D76604 /* IEventDispatcherProtocol.swift */,
-				C73A77F51AA3B74500D76604 /* ViewController.swift */,
 			);
 			path = SwiftEvents;
 			sourceTree = "<group>";
@@ -232,7 +229,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C73A78041AA3BF5800D76604 /* CustomEvent.swift in Resources */,
 				C73A78061AA3BF5800D76604 /* Event.swift in Resources */,
 				C73A78071AA3BF5800D76604 /* EventDispatcher.swift in Resources */,
 				C73A78081AA3BF5800D76604 /* EventHub.swift in Resources */,
@@ -257,8 +253,6 @@
 				C73A77FE1AA3B74500D76604 /* EventHub.swift in Sources */,
 				C73A77FC1AA3B74500D76604 /* EventDispatcher.swift in Sources */,
 				C73A77FA1AA3B74500D76604 /* Event.swift in Sources */,
-				C73A78021AA3B74500D76604 /* ViewController.swift in Sources */,
-				C73A77F61AA3B74500D76604 /* CustomEvent.swift in Sources */,
 				C73A78001AA3B74500D76604 /* IEventDispatcherProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,11 +263,11 @@
 			files = (
 				C73A77FF1AA3B74500D76604 /* EventHub.swift in Sources */,
 				C7BF6FB11AA51CE100356D37 /* SwiftEventsModuleRemoveEvent.swift in Sources */,
+				C7BF6FB31AA63E7E00356D37 /* SwiftEventsModuleCustomEvent.swift in Sources */,
 				C73A77FB1AA3B74500D76604 /* Event.swift in Sources */,
 				C73A77FD1AA3B74500D76604 /* EventDispatcher.swift in Sources */,
 				C73A77E31AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift in Sources */,
 				C73A78011AA3B74500D76604 /* IEventDispatcherProtocol.swift in Sources */,
-				C73A78031AA3B74500D76604 /* ViewController.swift in Sources */,
 				C73A77F71AA3B74500D76604 /* CustomEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
