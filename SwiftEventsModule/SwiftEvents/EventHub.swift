@@ -92,23 +92,18 @@ class EventHub {
         }
     }
     
-    func hasEventListener(name : String, withDispatcher dispatcher : EventDispatcher)->Bool
+    func hasEventListener(name : String, withDispatcher d : EventDispatcher)->Bool
     {
-        if var objectListeners : Array<ObjectFunction> = _eventFunctionMap[name]
+        if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
-            println(objectListeners.count)
-            
-            for (index,o) in enumerate(objectListeners)
+            for (index, o) in enumerate(objectListeners)
             {
-                println(o.dispatcher === dispatcher)
-                
-                if o.dispatcher === dispatcher
+                if o.dispatcher === d
                 {
                     return true
                 }
             }
         }
-        
         return false
     }
     

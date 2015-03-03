@@ -15,7 +15,6 @@ class SwiftEventsModuleSimpleDispatcher: XCTestCase {
     var dispatcher : EventDispatcher = EventDispatcher()
     let eventType : String = "test_handler_event"
     
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -37,9 +36,9 @@ class SwiftEventsModuleSimpleDispatcher: XCTestCase {
     
     func testHasListener()
     {
-      //  XCTAssertFalse(self.dispatcher.hasEventListener("dummyNonoEvent"), "Event listener is registered ?")
+        XCTAssertFalse(self.dispatcher.hasEventListener("dummyNonoEvent"), "Event listener is registered ?")
         
-       // println(self.dispatcher.hasEventListener(self.eventType))
+        self.dispatcher.addEventListener(self.eventType, withFunction: handler)
         XCTAssertTrue(self.dispatcher.hasEventListener(self.eventType), "Event should be registered")
     }
     
