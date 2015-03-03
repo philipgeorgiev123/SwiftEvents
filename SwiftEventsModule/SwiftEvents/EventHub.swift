@@ -64,6 +64,8 @@ class EventHub {
             objectListeners.append(ObjectFunction(f: f, withObject: d))
             _eventFunctionMap[name] = objectListeners
         }
+        
+        println(_eventFunctionMap[name])
     }
     
     func removeEventListener(name:String)
@@ -83,12 +85,31 @@ class EventHub {
                     objectListeners.removeAtIndex(index)
                     break
                 }
-                
             }
             
             _eventFunctionMap[name] = objectListeners
             
         }
+    }
+    
+    func hasEventListener(name : String, withDispatcher dispatcher : EventDispatcher)->Bool
+    {
+        if var objectListeners : Array<ObjectFunction> = _eventFunctionMap[name]
+        {
+            println(objectListeners.count)
+            
+            for (index,o) in enumerate(objectListeners)
+            {
+                println(o.dispatcher === dispatcher)
+                
+                if o.dispatcher === dispatcher
+                {
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
     
     func removeAllListeners()

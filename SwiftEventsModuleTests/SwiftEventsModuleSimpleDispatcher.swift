@@ -12,11 +12,14 @@ import XCTest
 class SwiftEventsModuleSimpleDispatcher: XCTestCase {
     var event : Event?
     var eventHandled : Event?
+    var dispatcher : EventDispatcher = EventDispatcher()
+    let eventType : String = "test_handler_event"
+    
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        self.event = Event(type: "test_handler_event")
+        self.event = Event(type: eventType)
     }
     
     override func tearDown() {
@@ -26,10 +29,18 @@ class SwiftEventsModuleSimpleDispatcher: XCTestCase {
     
     func testDispatchingEvent() {
         // This is an example of a functional test case.
-        var dispatcher : EventDispatcher = EventDispatcher()
-        dispatcher.addEventListener("test_handler_event", withFunction: handler)
+        
+        self.dispatcher.addEventListener(eventType, withFunction: handler)
         EventHub.instance.trigger(self.event!)
-        XCTAssert(event === eventHandled, "Handled event should execute and match the dispatched event")
+        XCTAssert(event === eventHandled, "Handled event should execute and match the dispatched event!")
+    }
+    
+    func testHasListener()
+    {
+      //  XCTAssertFalse(self.dispatcher.hasEventListener("dummyNonoEvent"), "Event listener is registered ?")
+        
+       // println(self.dispatcher.hasEventListener(self.eventType))
+        XCTAssertTrue(self.dispatcher.hasEventListener(self.eventType), "Event should be registered")
     }
     
     func handler(e : Event) -> ()
