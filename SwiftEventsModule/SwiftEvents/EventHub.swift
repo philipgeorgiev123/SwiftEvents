@@ -19,7 +19,7 @@ class ObjectFunction {
     }
 }
 
-class EventHub {
+public class EventHub {
     class var instance : EventHub
     {
         return _eventHubInstance

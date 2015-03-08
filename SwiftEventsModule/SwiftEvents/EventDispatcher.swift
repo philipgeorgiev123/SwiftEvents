@@ -5,17 +5,17 @@
 
 import Foundation
 
-class EventDispatcher : IEventDispatcherProtocol {
-    func dispatchEvent(e : Event)
+public class EventDispatcher : IEventDispatcherProtocol {
+    public func dispatchEvent(e : Event)
     {
         EventHub.instance.trigger(e);
     }
     
-    func addEventListener(name :String, withFunction f : (Event)->()) {
+    public func addEventListener(name :String, withFunction f : (Event)->()) {
         EventHub.instance.addEventListener(name, withFunction: f, withDispatcher: self)
     }
     
-    func removeEventListener(name : String) {
+    public func removeEventListener(name : String) {
         EventHub.instance.removeEventListener(name, withDispatcher : self)
     }
     
@@ -24,7 +24,7 @@ class EventDispatcher : IEventDispatcherProtocol {
         return EventHub.instance.hasEventListener(name, withDispatcher: self)
     }
     
-    func removeAllListeners()
+    public func removeAllListeners()
     {
         EventHub.instance.removeAllListeners(self)
     }

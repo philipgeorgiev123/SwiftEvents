@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C73A77D61AA3B4F800D76604 /* SwiftEventsModule.h in Headers */ = {isa = PBXBuildFile; fileRef = C73A77D51AA3B4F800D76604 /* SwiftEventsModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C702C13A1AABB709004662CB /* Event.swift in Headers */ = {isa = PBXBuildFile; fileRef = C73A77F11AA3B74500D76604 /* Event.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		C702C13B1AABB709004662CB /* EventDispatcher.swift in Headers */ = {isa = PBXBuildFile; fileRef = C73A77F21AA3B74500D76604 /* EventDispatcher.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		C702C13C1AABB709004662CB /* EventHub.swift in Headers */ = {isa = PBXBuildFile; fileRef = C73A77F31AA3B74500D76604 /* EventHub.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		C702C13D1AABB709004662CB /* IEventDispatcherProtocol.swift in Headers */ = {isa = PBXBuildFile; fileRef = C73A77F41AA3B74500D76604 /* IEventDispatcherProtocol.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		C73A77DC1AA3B4F800D76604 /* SwiftEventsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C73A77D01AA3B4F800D76604 /* SwiftEventsModule.framework */; };
 		C73A77E31AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77E21AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift */; };
 		C73A77F71AA3B74500D76604 /* CustomEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A77EF1AA3B74500D76604 /* CustomEvent.swift */; };
@@ -146,7 +149,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C73A77D61AA3B4F800D76604 /* SwiftEventsModule.h in Headers */,
+				C702C13A1AABB709004662CB /* Event.swift in Headers */,
+				C702C13B1AABB709004662CB /* EventDispatcher.swift in Headers */,
+				C702C13C1AABB709004662CB /* EventHub.swift in Headers */,
+				C702C13D1AABB709004662CB /* IEventDispatcherProtocol.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

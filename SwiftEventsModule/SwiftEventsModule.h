@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double SwiftEventsModuleVersionNumber;
 FOUNDATION_EXPORT const unsigned char SwiftEventsModuleVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SwiftEventsModule/PublicHeader.h>
-
-

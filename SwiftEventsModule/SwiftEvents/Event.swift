@@ -5,7 +5,7 @@
 
 import Foundation
 
-class Event {
+public class Event {
     var type : String!
     
     init(type : String)
