@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol IEventDispatcherProtocol
+public protocol IEventDispatcherProtocol : class
 {
     func dispatchEvent(e:Event)
     func addEventListener(name : String, withFunction f : (Event)->())

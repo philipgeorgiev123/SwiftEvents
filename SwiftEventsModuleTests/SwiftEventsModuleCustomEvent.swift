@@ -35,7 +35,7 @@ class SwiftEventsModuleCustomEvent: XCTestCase {
     
     func handleCustomEvent(e : Event)
     {
-        var c : CustomEvent = e as CustomEvent;
+        var c : CustomEvent = e as! CustomEvent;
         self.eventHandled = c
     }
 

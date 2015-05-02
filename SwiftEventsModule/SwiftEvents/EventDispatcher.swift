@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class EventDispatcher : IEventDispatcherProtocol {
+public class EventDispatcher : NSObject , IEventDispatcherProtocol {
     public func dispatchEvent(e : Event)
     {
         EventHub.instance.trigger(e);

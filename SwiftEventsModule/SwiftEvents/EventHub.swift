@@ -9,10 +9,10 @@ private let _eventHubInstance : EventHub = EventHub()
 private let _eventHubListener : EventDispatcher = EventDispatcher()
 
 class ObjectFunction {
-    var listener : (Event)->()?
-    var dispatcher : EventDispatcher?
+    var listener : (Event)->()
+    var dispatcher : IEventDispatcherProtocol
     
-    init(f : (Event)->(), withObject obj : EventDispatcher)
+    init(f : (Event)->(), withObject obj : IEventDispatcherProtocol)
     {
         self.listener = f
         self.dispatcher = obj
@@ -25,7 +25,7 @@ public class EventHub {
         return _eventHubInstance
     }
     
-    class var listener : EventDispatcher
+    class var listener : IEventDispatcherProtocol
     {
         return _eventHubListener
     }
@@ -42,7 +42,7 @@ public class EventHub {
         addEventListener(name, withFunction: f, withDispatcher: _eventHubListener)
     }
     
-    func addEventListener(name : String, withFunction f : (Event)->(), withDispatcher d : EventDispatcher)
+    func addEventListener(name : String, withFunction f : (Event)->(), withDispatcher d : IEventDispatcherProtocol)
     {
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
@@ -73,7 +73,7 @@ public class EventHub {
         removeEventListener(name, withDispatcher: _eventHubListener)
     }
     
-    func removeEventListener(name :String, withDispatcher dispatcher : EventDispatcher)
+    func removeEventListener(name :String, withDispatcher dispatcher : IEventDispatcherProtocol)
     {
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
@@ -92,7 +92,7 @@ public class EventHub {
         }
     }
     
-    func hasEventListener(name : String, withDispatcher d : EventDispatcher)->Bool
+    func hasEventListener(name : String, withDispatcher d : IEventDispatcherProtocol)->Bool
     {
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
@@ -112,7 +112,7 @@ public class EventHub {
         removeAllListeners(_eventHubListener)
     }
     
-    func removeAllListeners(dispatcher : EventDispatcher)
+    func removeAllListeners(dispatcher : IEventDispatcherProtocol)
     {
         for (name, var objectFunctions : Array<ObjectFunction>) in _eventFunctionMap
         {
