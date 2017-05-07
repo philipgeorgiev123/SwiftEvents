@@ -8,11 +8,12 @@ import Foundation
 private let _eventHubInstance : EventHub = EventHub()
 private let _eventHubListener : EventDispatcher = EventDispatcher()
 
+// class definition to capture event->function relationship
 class ObjectFunction {
     var listener : (Event)->()
     var dispatcher : IEventDispatcherProtocol
     
-    init(f : (Event)->(), withObject obj : IEventDispatcherProtocol)
+    init(f : @escaping (Event)->(),obj : IEventDispatcherProtocol)
     {
         self.listener = f
         self.dispatcher = obj
@@ -30,59 +31,57 @@ public class EventHub {
         return _eventHubListener
     }
     
-    private var _eventFunctionMap : [String : Array<ObjectFunction>] = [String : Array<ObjectFunction>]()
+    var _eventFunctionMap : [String : Array<ObjectFunction>] = [String : Array<ObjectFunction>]()
     
     init ()
     {
         
     }
     
-    func addEventListener(name : String, withFunction f : (Event)->())
+    func addEventListener(name : String, withFunction f : @escaping (Event)->())
     {
-        addEventListener(name, withFunction: f, withDispatcher: _eventHubListener)
+        addEventListener(name: name, withFunction: f, withDispatcher: _eventHubListener)
     }
     
-    func addEventListener(name : String, withFunction f : (Event)->(), withDispatcher d : IEventDispatcherProtocol)
+    func addEventListener(name : String, withFunction f : @escaping (Event)->(), withDispatcher d : IEventDispatcherProtocol)
     {
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
-            for (index, o) in enumerate(objectListeners)
+            for (_, o) in objectListeners.enumerated()
             {
                 if o.dispatcher === d
                 {
-                    println("multiple listeners are not supported by the framework :", name , " for ", d)
+                    print("multiple listeners are not supported by the framework :", name , " for ", d)
                     return
                 }
             }
             
-            objectListeners.append(ObjectFunction(f: f, withObject: d))
+            objectListeners.append(ObjectFunction(f: f, obj: d))
             _eventFunctionMap[name] = objectListeners
             
             // add it to the list if not found
         } else {
             var objectListeners = Array<ObjectFunction>()
-            objectListeners.append(ObjectFunction(f: f, withObject: d))
+            objectListeners.append(ObjectFunction(f: f, obj: d))
             _eventFunctionMap[name] = objectListeners
         }
-        
-        println(_eventFunctionMap[name])
     }
     
     func removeEventListener(name:String)
     {
-        removeEventListener(name, withDispatcher: _eventHubListener)
+        removeEventListener(name: name, withDispatcher: _eventHubListener)
     }
     
     func removeEventListener(name :String, withDispatcher dispatcher : IEventDispatcherProtocol)
     {
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
-            for (index, o) in enumerate(objectListeners)
+            for (index, o) in objectListeners.enumerated()
             {
                 // they can be only on dispatcher so bail after that
                 if o.dispatcher === dispatcher
                 {
-                    objectListeners.removeAtIndex(index)
+                    objectListeners.remove(at:index)
                     break
                 }
             }
@@ -94,9 +93,9 @@ public class EventHub {
     
     func hasEventListener(name : String, withDispatcher d : IEventDispatcherProtocol)->Bool
     {
-        if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
+        if let objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
-            for (index, o) in enumerate(objectListeners)
+            for (_ , o) in objectListeners.enumerated()
             {
                 if o.dispatcher === d
                 {
@@ -109,22 +108,22 @@ public class EventHub {
     
     func removeAllListeners()
     {
-        removeAllListeners(_eventHubListener)
+        removeAllListeners(dispatcher: _eventHubListener)
     }
     
     func removeAllListeners(dispatcher : IEventDispatcherProtocol)
     {
-        for (name, var objectFunctions : Array<ObjectFunction>) in _eventFunctionMap
+        for (name, var objectFunctions) in _eventFunctionMap
         {
-            for (index, o) in enumerate(objectFunctions)
+            for (index, o) in objectFunctions.enumerated()
             {
                 if (o.dispatcher === dispatcher)
                 {
-                    objectFunctions.removeAtIndex(index)
+                    objectFunctions.remove(at:index)
                     
                     if objectFunctions.count == 0
                     {
-                        _eventFunctionMap.removeValueForKey(name)
+                        _eventFunctionMap.removeValue(forKey:name)
                     
                     } else
                     {

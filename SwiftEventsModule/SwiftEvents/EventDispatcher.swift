@@ -5,28 +5,28 @@
 
 import Foundation
 
-public class EventDispatcher : NSObject , IEventDispatcherProtocol {
-    public func dispatchEvent(e : Event)
+open class EventDispatcher : NSObject , IEventDispatcherProtocol {
+    open func addEventListener(_ name: String, withFunction f: @escaping (Event) -> ()) {
+         EventHub.instance.addEventListener(name: name, withFunction: f, withDispatcher: self)
+    }
+
+    open func dispatchEvent(_ e : Event)
     {
-        EventHub.instance.trigger(e);
+        EventHub.instance.trigger(e : e);
     }
     
-    public func addEventListener(name :String, withFunction f : (Event)->()) {
-        EventHub.instance.addEventListener(name, withFunction: f, withDispatcher: self)
+    open func removeEventListener(_ name : String) {
+        EventHub.instance.removeEventListener(name: name, withDispatcher : self)
     }
     
-    public func removeEventListener(name : String) {
-        EventHub.instance.removeEventListener(name, withDispatcher : self)
-    }
-    
-    func hasEventListener(name : String)-> Bool
+    func hasEventListener(_ name : String)-> Bool
     {
-        return EventHub.instance.hasEventListener(name, withDispatcher: self)
+        return EventHub.instance.hasEventListener(name: name, withDispatcher: self)
     }
     
-    public func removeAllListeners()
+    open func removeAllListeners()
     {
-        EventHub.instance.removeAllListeners(self)
+        EventHub.instance.removeAllListeners(dispatcher: self)
     }
     
     deinit

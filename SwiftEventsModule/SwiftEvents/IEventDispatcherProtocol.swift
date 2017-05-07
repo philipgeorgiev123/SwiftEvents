@@ -7,8 +7,8 @@ import Foundation
 
 public protocol IEventDispatcherProtocol : class
 {
-    func dispatchEvent(e:Event)
-    func addEventListener(name : String, withFunction f : (Event)->())
-    func removeEventListener(name : String)
+    func dispatchEvent(_ e:Event)
+    func addEventListener(_ name : String, withFunction f : @escaping (Event)->())
+    func removeEventListener(_ name : String)
     func removeAllListeners()
 }

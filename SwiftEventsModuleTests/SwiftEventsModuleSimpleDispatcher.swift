@@ -30,7 +30,7 @@ class SwiftEventsModuleSimpleDispatcher: XCTestCase {
         // This is an example of a functional test case.
         
         self.dispatcher.addEventListener(eventType, withFunction: handler)
-        EventHub.instance.trigger(self.event!)
+        EventHub.instance.trigger(e: self.event!)
         XCTAssert(event === eventHandled, "Handled event should execute and match the dispatched event!")
     }
     
@@ -42,7 +42,7 @@ class SwiftEventsModuleSimpleDispatcher: XCTestCase {
         XCTAssertTrue(self.dispatcher.hasEventListener(self.eventType), "Event should be registered")
     }
     
-    func handler(e : Event) -> ()
+    func handler(_ e : Event) -> ()
     {
         eventHandled = e
     }

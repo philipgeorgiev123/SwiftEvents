@@ -25,7 +25,7 @@ class SwiftEventsModuleRemoveEvent: XCTestCase {
     }
 
     func testRemoveListener() {
-        var dispatcher : EventDispatcher = EventDispatcher()
+        let dispatcher : EventDispatcher = EventDispatcher()
         
         dispatcher.addEventListener("test_handler_event", withFunction: handler)
         dispatcher.removeEventListener("test_handler_event")
@@ -34,7 +34,7 @@ class SwiftEventsModuleRemoveEvent: XCTestCase {
         XCTAssert(event !== eventHandled, "Handled event should execute and match the dispatched event")
     }
     
-    func handler(e : Event) -> ()
+    func handler(_ e : Event) -> ()
     {
         eventHandled = e
     }

@@ -27,15 +27,15 @@ class SwiftEventsModuleCustomEvent: XCTestCase {
 
     func testExample() {
         // This is an example of a functional test case.
-        var view : EventDispatcher = EventDispatcher()
+        let view : EventDispatcher = EventDispatcher()
         view.addEventListener(CustomEvent.CUSTOM_TYPE, withFunction: handleCustomEvent)
         view.dispatchEvent(self.event!)
         XCTAssert(self.event === self.eventHandled, "couldn't fetch custom event")
     }
     
-    func handleCustomEvent(e : Event)
+    func handleCustomEvent(_ e : Event)
     {
-        var c : CustomEvent = e as! CustomEvent;
+        let c : CustomEvent = e as! CustomEvent;
         self.eventHandled = c
     }
 
