@@ -12,11 +12,13 @@ private let _eventHubListener : EventDispatcher = EventDispatcher()
 class ObjectFunction {
     var listener : (Event)->()
     var dispatcher : IEventDispatcherProtocol
+    var isOnce : Bool
     
-    init(f : @escaping (Event)->(),obj : IEventDispatcherProtocol)
+    init(f : @escaping (Event)->(),obj : IEventDispatcherProtocol, isOnce : Bool = false)
     {
         self.listener = f
         self.dispatcher = obj
+        self.isOnce = isOnce
     }
 }
 
@@ -43,7 +45,17 @@ public class EventHub {
         addEventListener(name: name, withFunction: f, withDispatcher: _eventHubListener)
     }
     
-    func addEventListener(name : String, withFunction f : @escaping (Event)->(), withDispatcher d : IEventDispatcherProtocol)
+    func addEventListenerOnce(name : String,
+                              withFunction f : @escaping (Event)->(),
+                              withDispatcher d : IEventDispatcherProtocol) {
+        addEventListener(name: name, withFunction: f, withDispatcher: d, isOnce: true)
+    }
+    
+    func addEventListener(name : String,
+                          withFunction f : @escaping (Event)->(),
+                          withDispatcher d : IEventDispatcherProtocol,
+                          isOnce : Bool = false
+        )
     {
         if var objectListeners: Array<ObjectFunction> = _eventFunctionMap[name]
         {
@@ -56,13 +68,13 @@ public class EventHub {
                 }
             }
             
-            objectListeners.append(ObjectFunction(f: f, obj: d))
+            objectListeners.append(ObjectFunction(f: f, obj: d, isOnce : isOnce))
             _eventFunctionMap[name] = objectListeners
             
             // add it to the list if not found
         } else {
             var objectListeners = Array<ObjectFunction>()
-            objectListeners.append(ObjectFunction(f: f, obj: d))
+            objectListeners.append(ObjectFunction(f: f, obj: d, isOnce : isOnce))
             _eventFunctionMap[name] = objectListeners
         }
     }
@@ -142,6 +154,12 @@ public class EventHub {
             for o : ObjectFunction in arrayListeners
             {
                 o.listener(e)
+                
+                if (o.isOnce)
+                {
+                    removeEventListener(name: e.type, withDispatcher: o.dispatcher)
+                    o.isOnce = false
+                }
             }
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		656CF69B1EBF91CE001C3733 /* SwiftEventsModuleTestListenOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CF69A1EBF91CE001C3733 /* SwiftEventsModuleTestListenOnce.swift */; };
 		C702C13A1AABB709004662CB /* Event.swift in Headers */ = {isa = PBXBuildFile; fileRef = C73A77F11AA3B74500D76604 /* Event.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		C702C13B1AABB709004662CB /* EventDispatcher.swift in Headers */ = {isa = PBXBuildFile; fileRef = C73A77F21AA3B74500D76604 /* EventDispatcher.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		C702C13C1AABB709004662CB /* EventHub.swift in Headers */ = {isa = PBXBuildFile; fileRef = C73A77F31AA3B74500D76604 /* EventHub.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		656CF69A1EBF91CE001C3733 /* SwiftEventsModuleTestListenOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEventsModuleTestListenOnce.swift; sourceTree = "<group>"; };
 		C73A77D01AA3B4F800D76604 /* SwiftEventsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftEventsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73A77D41AA3B4F800D76604 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73A77D51AA3B4F800D76604 /* SwiftEventsModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftEventsModule.h; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				C73A77EF1AA3B74500D76604 /* CustomEvent.swift */,
+				656CF69A1EBF91CE001C3733 /* SwiftEventsModuleTestListenOnce.swift */,
 				C7BF6FB01AA51CE100356D37 /* SwiftEventsModuleRemoveEvent.swift */,
 				C7BF6FB21AA63E7E00356D37 /* SwiftEventsModuleCustomEvent.swift */,
 				C73A77E21AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift */,
@@ -277,6 +280,7 @@
 				C73A77E31AA3B4F800D76604 /* SwiftEventsModuleSimpleDispatcher.swift in Sources */,
 				C73A78011AA3B74500D76604 /* IEventDispatcherProtocol.swift in Sources */,
 				C73A77F71AA3B74500D76604 /* CustomEvent.swift in Sources */,
+				656CF69B1EBF91CE001C3733 /* SwiftEventsModuleTestListenOnce.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@ public protocol IEventDispatcherProtocol : class
 {
     func dispatchEvent(_ e:Event)
     func addEventListener(_ name : String, withFunction f : @escaping (Event)->())
+    func addEventListenerOnce(_ name : String, withfunction f : @escaping(Event)->())
     func removeEventListener(_ name : String)
     func removeAllListeners()
 }
