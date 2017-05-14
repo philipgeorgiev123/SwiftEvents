@@ -15,12 +15,22 @@ class CustomEvent : Event
         get { return "CUSTOM_EVENT_TYPE" }
     }
     
+    class var CUSTOM_TYPE_OTHER : String
+    {
+        get {return "CUSTOM_TYPE_OTHER" }
+    }
+    
+    class var CUSTOM_TYPE_THIRD : String
+    {
+        get {return "CUSTOM_TYPE_THIRD" }
+    }
+    
     var customAttribute : String;
     
-    init(attribute : String)
+    init(type : String, customAttribute : String)
     {
-        self.customAttribute = attribute
-        super.init(type : CustomEvent.CUSTOM_TYPE)
+        self.customAttribute = customAttribute
+        super.init(type : type)
     }
 }
 	

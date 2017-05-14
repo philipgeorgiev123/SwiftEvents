@@ -118,6 +118,31 @@ public class EventHub {
         return false
     }
     
+    func myEventsList(withDispatcher dispatcher : IEventDispatcherProtocol) -> Array<String>
+    {
+        var allEventsListenedTo = Array<String>()
+        
+        for (name, objectFunctions) in _eventFunctionMap
+        {
+            for (_, o) in objectFunctions.enumerated()
+            {
+                if (o.dispatcher === dispatcher)
+                {
+                    allEventsListenedTo.append(name)
+                }
+            }
+        }
+        
+        return allEventsListenedTo
+    }
+    
+    open func debugHubState() {
+        for (name, objectFunctions) in _eventFunctionMap
+        {
+            print(name + " " + String(objectFunctions.count))
+        }
+    }
+    
     func removeAllListeners()
     {
         removeAllListeners(dispatcher: _eventHubListener)

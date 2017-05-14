@@ -12,4 +12,5 @@ public protocol IEventDispatcherProtocol : class
     func addEventListenerOnce(_ name : String, withfunction f : @escaping(Event)->())
     func removeEventListener(_ name : String)
     func removeAllListeners()
+    func myEventsList() -> Array<String>
 }

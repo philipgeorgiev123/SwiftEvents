@@ -6,12 +6,18 @@
 import Foundation
 
 open class EventDispatcher : NSObject , IEventDispatcherProtocol {
+    
+    public func myEventsList() -> Array<String>
+    {
+        return EventHub.instance.myEventsList(withDispatcher: self)
+    }
+    
     public func addEventListenerOnce(_ name: String, withfunction f: @escaping (Event) -> ()) {
         EventHub.instance.addEventListenerOnce(name: name, withFunction: f, withDispatcher: self)
     }
 
     open func addEventListener(_ name: String, withFunction f: @escaping (Event) -> ()) {
-         EventHub.instance.addEventListener(name: name, withFunction: f, withDispatcher: self)
+        EventHub.instance.addEventListener(name: name, withFunction: f, withDispatcher: self)
     }
 
     open func dispatchEvent(_ e : Event)

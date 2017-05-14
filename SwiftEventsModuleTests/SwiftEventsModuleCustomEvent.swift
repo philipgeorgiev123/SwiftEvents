@@ -17,7 +17,7 @@ class SwiftEventsModuleCustomEvent: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        self.event = CustomEvent(attribute: "test_some_custom_data")
+        self.event = CustomEvent(type: CustomEvent.CUSTOM_TYPE, customAttribute: "data")
     }
     
     override func tearDown() {
@@ -30,6 +30,7 @@ class SwiftEventsModuleCustomEvent: XCTestCase {
         let view : EventDispatcher = EventDispatcher()
         view.addEventListener(CustomEvent.CUSTOM_TYPE, withFunction: handleCustomEvent)
         view.dispatchEvent(self.event!)
+        
         XCTAssert(self.event === self.eventHandled, "couldn't fetch custom event")
     }
     
